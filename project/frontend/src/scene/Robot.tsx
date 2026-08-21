@@ -28,11 +28,23 @@ export function Robot() {
         <boxGeometry args={[0.45, 0.12, 0.45]} />
         <meshStandardMaterial color="#e2e8f0" />
       </mesh>
-      {/* Visor faces local +Z — yaw aligns +Z with movement direction */}
-      <mesh position={[0, 0.22, 0.28]}>
-        <boxGeometry args={[0.38, 0.1, 0.06]} />
-        <meshStandardMaterial color="#22d3ee" emissive="#0891b2" emissiveIntensity={1.2} />
+
+      {/* ojo izquierdo */}
+      <mesh position={[-0.12, 0.24, 0.29]}>
+        <sphereGeometry args={[0.055, 16, 16]} />
+        <meshStandardMaterial color="#000000" emissive="#000000" emissiveIntensity={1.4} />
       </mesh>
+      {/* ojo derecho */}
+      <mesh position={[0.12, 0.24, 0.29]}>
+        <sphereGeometry args={[0.055, 16, 16]} />
+        <meshStandardMaterial color="#000000" emissive="#000000" emissiveIntensity={1.4} />
+      </mesh>
+      {/* sonrisa */}
+      <mesh position={[0, 0.14, 0.29]} rotation={[0, 0, Math.PI]}>
+        <torusGeometry args={[0.11, 0.022, 12, 24, Math.PI]} />
+        <meshStandardMaterial color="#000000" emissive="#000000" emissiveIntensity={1.4} />
+      </mesh>
+
       {[
         [-0.22, -0.02, -0.22],
         [0.22, -0.02, -0.22],

@@ -139,7 +139,7 @@ export function World() {
 
   return (
     <>
-      <color attach="background" args={['#dbe4ee']} />
+      <color attach="background" args={['#103a69']} />
       <ambientLight intensity={0.85} />
       <directionalLight position={[14, 20, 10]} intensity={0.9} />
       <hemisphereLight args={['#f8fafc', '#94a3b8', 0.4]} />
