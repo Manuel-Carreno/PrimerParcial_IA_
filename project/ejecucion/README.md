@@ -56,8 +56,8 @@ Para verificar el funcionamiento del agente mediante tests:
 
 ```bash
 cd project/backend/tests
-py test_demo_plan.py    # para correr el demo del agente simulado
-py tests_agentes.py # para correr el agente funcionando
+python test_demo_plan.py    # para correr el demo del agente simulado
+python tests_agente.py # para correr el agente funcionando
 ```
 
 ## 6. Interpretar el resultado
