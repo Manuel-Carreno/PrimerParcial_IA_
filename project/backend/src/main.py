@@ -6,12 +6,12 @@ import json
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI
+from fastapi import Body, FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from demo_plan import build_demo_plan
+from solver import solve_scenario
 
-app = FastAPI(title="Emergency Control API", version="1.0.0")
+app = FastAPI(title="Emergency Control API", version="2.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -40,11 +40,10 @@ def get_scenario() -> dict[str, Any]:
 
 
 @app.post("/api/solve")
-def solve(scenario: dict[str, Any]) -> dict[str, Any]:
-    """Return a demo plan consistent with the provided scenario.
-
-    Students replace this with a real UCS/search agent. The response contract
-    must remain: solution_found, total_cost, steps[{op, cost, ...}].
-    """
+def solve(
+    scenario: dict[str, Any] | None = Body(default=None),
+    time_limit_s: float = Query(default=300.0, gt=0),
+) -> dict[str, Any]:
+    
     data = scenario if scenario else _load_default_scenario()
-    return build_demo_plan(data)
+    return solve_scenario(data, time_limit_s=time_limit_s)
