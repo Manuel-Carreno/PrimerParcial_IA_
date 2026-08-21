@@ -157,10 +157,9 @@ o solo medios?
 
 **Respuesta:**
 ```text
-Goal(s) ⟺ PANEL_A, PANEL_B, PANEL_C == OK and GENERATOR, ARTILLERY, COMMAND == ONLINE
+Goal(s) ⟺  GENERATOR, ARTILLERY, COMMAND == ONLINE
 ```
-Con esta prueba de meta definida podemos asegurar que todos los paneles fueron reparados y que las estaciones estan activas. 
-
+Los paneles y las puertas no son parte de la meta, son solo medios por que como podemos notar en el scenario.json el goal es que GENERATOR, ARTILLERY Y COMMAND esten ONLINE y la meta se verifica sobre el estado final mas no sobre una lista de tareas.
 
 ---
 
@@ -176,9 +175,9 @@ en este mundo (hay corredores baratos y caros).
 
 **Respuesta:** 
 ```text
-g(n) = Σ costo(a1)
+g(n) = Σ costo(aᵢ)
 ```
-Ya que de esta manera representamos de manera arbitraria la suma de los costos de todas las acciones realizadas desde el estado inicial hasta el nodo actual, dependiendo del camino que elija
+Ya que de esta manera representamos la suma de los costos de todas las acciones realizadas desde el estado inicial hasta el nodo actual, dependiendo del camino que elija.
 
 ---
 
