@@ -10,13 +10,33 @@ export function Robot() {
   )
   const yaw = useSimStore((s) => s.runtime?.robotYaw ?? 0)
 
-  useFrame(() => {
-    if (!group.current) return
-    group.current.position.x = pos[0]
-    group.current.position.y = pos[1]
-    group.current.position.z = pos[2]
-    group.current.rotation.y = yaw
+    const celebra = useSimStore((s) => {
+    if (!s.scenario || !s.runtime) return false
+    if (s.running || s.plan.length === 0) return false
+    if (s.stepIndex < s.plan.length) return false
+    return s.scenario.goal.stations_online.every(
+      (id) => s.runtime!.stations[id] === 'ONLINE',
+    )
   })
+
+    useFrame((state) => {
+    if (!group.current) return
+    const t = state.clock.getElapsedTime()
+
+    group.current.position.x = pos[0]
+    group.current.position.z = pos[2]
+
+    if (celebra) {
+      group.current.position.y = pos[1] + Math.abs(Math.sin(t * 5)) * 0.28
+      group.current.rotation.y += 0.06
+    } else {
+      group.current.position.y = pos[1]
+      group.current.rotation.y = yaw
+    }
+  })
+
+  const acento = celebra ? '#4ade80' : '#22d3ee'
+  const brillo = celebra ? '#16a34a' : '#0891b2'
 
   return (
     <group ref={group} position={[pos[0], pos[1], pos[2]]} rotation={[0, yaw, 0]}>
